@@ -13,7 +13,7 @@ export const useSignup = () => {
   
     try {
       // signup
-      const res = await createUserWithEmailAndPassword(auth,email, password)
+      const res = await createUserWithEmailAndPassword(auth, email, password)
       console.log(res.user)
 
       if (!res) {
