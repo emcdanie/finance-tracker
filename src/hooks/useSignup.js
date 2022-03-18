@@ -1,21 +1,19 @@
 import { useState } from 'react'
-import { useAuthContext } from "../hooks/useAuthContext"
-
-//firebase imports
-import {auth} from '../firebase/config'
+import { auth } from '../firebase/config'
 import { createUserWithEmailAndPassword} from 'firebase/auth'
 
 export const useSignup = () => {
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
 
-  const signup = (email, password, displayName) => {
+  const signup = async (email, password, displayName) => {
     setError(null)
     setIsPending(true)
+    createUserWithEmailAndPassword(auth, email, password)
   
     try {
       // signup
-      const signup = await .createUserWithEmailAndPassword(email, password)
+      const res = await createUserWithEmailAndPassword(auth,email, password)
       console.log(res.user)
 
       if (!res) {
